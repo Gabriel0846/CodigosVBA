@@ -11,6 +11,9 @@ Sub SALVAR()
     Set wsBD = ThisWorkbook.Sheets("BD")
     Set wsLancamentos = ThisWorkbook.Sheets("LANÇAMENTOS")
     
+    wsBD.Unprotect Password:="2015"
+    wsLancamentos.Unprotect Password:="2015"
+    
     valorH1 = wsLancamentos.Range("H1").Value
     
     encontrado = False
@@ -24,7 +27,7 @@ Sub SALVAR()
             Exit For
         End If
     Next i
-
+    
     If encontrado Then
         resposta = MsgBox("O número da requisição já existe no banco de dados. Deseja atualiza-lo pelos valores atuais?", vbYesNo + vbQuestion, "Confirmação")
         
@@ -44,4 +47,8 @@ Sub SALVAR()
         wsLancamentos.Range("H1").Value = wsLancamentos.Range("H1").Value + 1
         MsgBox "Requisição " & valorH1 & " registrada com sucesso."
     End If
+    
+    wsBD.Protect Password:="2015"
+    wsLancamentos.Protect Password:="2015"
+    
 End Sub
