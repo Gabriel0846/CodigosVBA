@@ -48,7 +48,7 @@ Sub SALVAR()
         MsgBox "Requisição " & valorH1 & " registrada com sucesso."
     End If
     
-    wsBD.Protect Password:="2015"
+    wsBD.Protect Password:="2015", DrawingObjects:=True, Contents:=True, Scenarios:=True, AllowFiltering:=True
     wsLancamentos.Protect Password:="2015"
     
 End Sub
