@@ -7,9 +7,21 @@ Sub SALVAR()
     Dim i As Long
     Dim resposta As VbMsgBoxResult
     Dim linhaEncontrada As Long
+    Dim usuario As String
+    Dim sigla As String
     
     Set wsBD = ThisWorkbook.Sheets("BD")
     Set wsLancamentos = ThisWorkbook.Sheets("LANÇAMENTOS")
+    
+    ' Obter o usuário e a sigla atual
+    usuario = wsLancamentos.Range("M8").Value
+    sigla = wsLancamentos.Range("N8").Value
+    
+    ' Verificar permissões
+    If Not TemPermissaoLancar(usuario, sigla) Then
+        MsgBox "Você não tem permissão para lançar dados.", vbCritical
+        Exit Sub
+    End If
     
     wsBD.Unprotect Password:="2015"
     wsLancamentos.Unprotect Password:="2015"
@@ -32,7 +44,7 @@ Sub SALVAR()
         resposta = MsgBox("O número da requisição já existe no banco de dados. Deseja atualiza-lo pelos valores atuais?", vbYesNo + vbQuestion, "Confirmação")
         
         If resposta = vbYes Then
-            wsLancamentos.Range("M2:AS2").Copy
+            wsLancamentos.Range("M2:AV2").Copy
             wsBD.Rows(linhaEncontrada).PasteSpecial Paste:=xlPasteValues
             Application.CutCopyMode = False
             MsgBox "Requisição " & valorH1 & " atualizada no banco de dados."
@@ -40,7 +52,7 @@ Sub SALVAR()
             MsgBox "Operação cancelada pelo usuário.", vbInformation
         End If
     Else
-        wsLancamentos.Range("M2:AS2").Copy
+        wsLancamentos.Range("M2:AV2").Copy
         wsBD.Rows(2).Insert Shift:=xlDown
         wsBD.Rows(2).PasteSpecial Paste:=xlPasteValues
         Application.CutCopyMode = False
@@ -54,3 +66,26 @@ Sub SALVAR()
     LIMPAR
     
 End Sub
+
+Function TemPermissaoLancar(usuario As String, sigla As String) As Boolean
+    Dim wsDados As Worksheet
+    Dim ultimaLinha As Long
+    Dim i As Long
+    Dim permissao As Boolean
+    
+    Set wsDados = ThisWorkbook.Sheets("DADOS")
+    
+    ultimaLinha = wsDados.Cells(wsDados.Rows.Count, "A").End(xlUp).Row
+    permissao = False
+    
+    For i = 2 To ultimaLinha
+        If wsDados.Cells(i, 1).Value = usuario And wsDados.Cells(i, 2).Value = sigla Then
+            If wsDados.Cells(i, 5).Value = 1 Then
+                permissao = True
+            End If
+            Exit For
+        End If
+    Next i
+    
+    TemPermissaoLancar = permissao
+End Function

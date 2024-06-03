@@ -60,6 +60,9 @@ Private Sub BUSCAR_Click()
         wsLancamentos.Range("D25").Value = wsLancamentos.Range("AQ4").Value
         wsLancamentos.Range("E25").Value = wsLancamentos.Range("AR4").Value
         wsLancamentos.Range("F25").Value = wsLancamentos.Range("AS4").Value
+        wsLancamentos.Range("L21").Value = wsLancamentos.Range("AT4").Value
+        wsLancamentos.Range("L22").Value = wsLancamentos.Range("AU4").Value
+        wsLancamentos.Range("L23").Value = wsLancamentos.Range("AV4").Value
     Else
         MsgBox "Número de Requisição não encontrado.", vbExclamation
     End If

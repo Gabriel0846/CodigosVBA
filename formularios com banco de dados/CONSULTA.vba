@@ -1,3 +1,3 @@
 Sub CONSULTA()
-    UserForm1.Show
+    frmConsulta.Show
 End Sub
