@@ -16,7 +16,8 @@ Sub CriarAbasCopiando()
 
     Set abaBase = ThisWorkbook.Sheets("BRANCO")
 
-    novoNumero = 5301 + ThisWorkbook.Sheets.Count - ThisWorkbook.Sheets("BRANCO").Index
+    ' numero inial da criação das abas
+    novoNumero = 5301
 
     For i = 1 To quantidade
         abaBase.Copy After:=ThisWorkbook.Sheets(ThisWorkbook.Sheets.Count)
