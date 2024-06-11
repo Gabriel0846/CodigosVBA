@@ -1,3 +1,18 @@
+VERSION 5.00
+Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmLogin 
+   Caption         =   "UserForm2"
+   ClientHeight    =   3015
+   ClientLeft      =   120
+   ClientTop       =   465
+   ClientWidth     =   3555
+   OleObjectBlob   =   "frmLogin.frx":0000
+   StartUpPosition =   1  'CenterOwner
+End
+Attribute VB_Name = "frmLogin"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
 Private Sub btnLogin_Click()
     Dim wsDados As Worksheet
     Dim ultimaLinha As Long
@@ -7,18 +22,18 @@ Private Sub btnLogin_Click()
     
     usuario = UCase(txtUsuario.Text)
     senha = txtSenha.Text
-    Set wsLancamentos = ThisWorkbook.Sheets("LANÃ‡AMENTOS")
+    Set wsLancamentos = ThisWorkbook.Sheets("LANÇAMENTOS")
     
     wsLancamentos.Unprotect Password:="2015"
     
     If ValidaLogin(usuario, senha) Then
-        With ThisWorkbook.Sheets("LANÃ‡AMENTOS")
+        With ThisWorkbook.Sheets("LANÇAMENTOS")
             .Range("M8").Value = usuario
             .Range("N8").Value = GetSigla(usuario)
         End With
         Me.Hide
     Else
-        MsgBox "UsuÃ¡rio ou senha invÃ¡lidos. Tente novamente.", vbCritical
+        MsgBox "Usuário ou senha inválidos. Tente novamente.", vbCritical
     End If
     
     wsLancamentos.Protect Password:="2015"
@@ -28,6 +43,11 @@ Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
     If CloseMode = vbFormControlMenu Then
         ThisWorkbook.Close SaveChanges:=False
     End If
+End Sub
+
+Private Sub btnCancelar_Click()
+    Unload Me
+    ThisWorkbook.Close SaveChanges:=False
 End Sub
 
 Function ValidaLogin(usuario As String, senha As String) As Boolean
@@ -70,3 +90,4 @@ Function GetSigla(usuario As String) As String
     
     GetSigla = sigla
 End Function
+

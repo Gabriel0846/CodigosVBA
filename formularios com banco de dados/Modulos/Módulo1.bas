@@ -1,3 +1,4 @@
+Attribute VB_Name = "MÛdulo1"
 Sub SALVAR()
     Dim wsBD As Worksheet
     Dim wsLancamentos As Worksheet
@@ -11,15 +12,15 @@ Sub SALVAR()
     Dim sigla As String
     
     Set wsBD = ThisWorkbook.Sheets("BD")
-    Set wsLancamentos = ThisWorkbook.Sheets("LAN√áAMENTOS")
+    Set wsLancamentos = ThisWorkbook.Sheets("LAN«AMENTOS")
     
-    ' Obter o usu√°rio e a sigla atual
+    ' Obter o usu·rio e a sigla atual
     usuario = wsLancamentos.Range("M8").Value
     sigla = wsLancamentos.Range("N8").Value
     
-    ' Verificar permiss√µes
+    ' Verificar permissıes
     If Not TemPermissaoLancar(usuario, sigla) Then
-        MsgBox "Voc√™ n√£o tem permiss√£o para lan√ßar dados.", vbCritical
+        MsgBox "VocÍ n„o tem permiss„o para lanÁar dados.", vbCritical
         Exit Sub
     End If
     
@@ -41,15 +42,15 @@ Sub SALVAR()
     Next i
     
     If encontrado Then
-        resposta = MsgBox("O n√∫mero da requisi√ß√£o j√° existe no banco de dados. Deseja atualiza-lo pelos valores atuais?", vbYesNo + vbQuestion, "Confirma√ß√£o")
+        resposta = MsgBox("O n˙mero da requisiÁ„o j· existe no banco de dados. Deseja atualiza-lo pelos valores atuais?", vbYesNo + vbQuestion, "ConfirmaÁ„o")
         
         If resposta = vbYes Then
             wsLancamentos.Range("M2:AV2").Copy
             wsBD.Rows(linhaEncontrada).PasteSpecial Paste:=xlPasteValues
             Application.CutCopyMode = False
-            MsgBox "Requisi√ß√£o " & valorH1 & " atualizada no banco de dados."
+            MsgBox "RequisiÁ„o " & valorH1 & " atualizada no banco de dados."
         Else
-            MsgBox "Opera√ß√£o cancelada pelo usu√°rio.", vbInformation
+            MsgBox "OperaÁ„o cancelada pelo usu·rio.", vbInformation
         End If
     Else
         wsLancamentos.Range("M2:AV2").Copy
@@ -57,7 +58,7 @@ Sub SALVAR()
         wsBD.Rows(2).PasteSpecial Paste:=xlPasteValues
         Application.CutCopyMode = False
         wsLancamentos.Range("H1").Value = wsLancamentos.Range("H1").Value + 1
-        MsgBox "Requisi√ß√£o " & valorH1 & " registrada com sucesso."
+        MsgBox "RequisiÁ„o " & valorH1 & " registrada com sucesso."
     End If
     
     wsBD.Protect Password:="2015", DrawingObjects:=True, Contents:=True, Scenarios:=True, AllowFiltering:=True
@@ -89,3 +90,21 @@ Function TemPermissaoLancar(usuario As String, sigla As String) As Boolean
     
     TemPermissaoLancar = permissao
 End Function
+
+Sub NOVO()
+    ActiveSheet.Unprotect Password:="2015"
+
+    Range("H1").Value = Range("M6").Value
+    LIMPAR
+    Range("L21").Value = Range("M8").Value
+    Range("L22, L23").ClearContents
+    Range("C5:D5").Select
+    
+    
+    ActiveSheet.Protect Password:="2015"
+End Sub
+
+
+Sub CONSULTA()
+    frmConsulta.Show
+End Sub

@@ -1,3 +1,18 @@
+VERSION 5.00
+Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmConsulta 
+   Caption         =   "UserForm1"
+   ClientHeight    =   1710
+   ClientLeft      =   120
+   ClientTop       =   465
+   ClientWidth     =   4560
+   OleObjectBlob   =   "frmConsulta.frx":0000
+   StartUpPosition =   1  'CenterOwner
+End
+Attribute VB_Name = "frmConsulta"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
 Private Sub BUSCAR_Click()
     Application.ScreenUpdating = False
 
@@ -12,7 +27,7 @@ Private Sub BUSCAR_Click()
     encontrado = False
 
     Set wsBD = ThisWorkbook.Sheets("BD")
-    Set wsLancamentos = ThisWorkbook.Sheets("LANÃ‡AMENTOS")
+    Set wsLancamentos = ThisWorkbook.Sheets("LANÇAMENTOS")
     Set rng = wsBD.Range("A1:A10000")
 
     wsBD.Unprotect Password:="2015"
@@ -64,7 +79,7 @@ Private Sub BUSCAR_Click()
         wsLancamentos.Range("L22").Value = wsLancamentos.Range("AU4").Value
         wsLancamentos.Range("L23").Value = wsLancamentos.Range("AV4").Value
     Else
-        MsgBox "NÃºmero de RequisiÃ§Ã£o nÃ£o encontrado.", vbExclamation
+        MsgBox "Número de Requisição não encontrado.", vbExclamation
     End If
 
     wsBD.Protect Password:="2015", DrawingObjects:=True, Contents:=True, Scenarios:=True, AllowFiltering:=True
@@ -73,3 +88,12 @@ Private Sub BUSCAR_Click()
     Application.ScreenUpdating = True
     Unload Me
 End Sub
+
+
+Private Sub CANCELAR_Click()
+Unload Me
+End Sub
+
+Private Sub UserForm_Initialize()
+End Sub
+
