@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmConsulta 
-   Caption         =   "UserForm1"
+   Caption         =   "CONSULTAR"
    ClientHeight    =   1710
    ClientLeft      =   120
    ClientTop       =   465
@@ -13,6 +13,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+
 Private Sub BUSCAR_Click()
     Application.ScreenUpdating = False
 
@@ -26,9 +27,9 @@ Private Sub BUSCAR_Click()
     numeroRequisicao = Me.TextBox1.Value
     encontrado = False
 
-    Set wsBD = ThisWorkbook.Sheets("BD")
-    Set wsLancamentos = ThisWorkbook.Sheets("LANÇAMENTOS")
-    Set rng = wsBD.Range("A1:A10000")
+    Set wsBD = ThisWorkbook.Sheets("BANCO DE DADOS")
+    Set wsLancamentos = ThisWorkbook.Sheets("GUIA EXAMES")
+    Set rng = wsBD.Range("B1:B10000")
 
     wsBD.Unprotect Password:="2015"
     wsLancamentos.Unprotect Password:="2015"
@@ -92,6 +93,10 @@ End Sub
 
 Private Sub CANCELAR_Click()
 Unload Me
+End Sub
+
+Private Sub Label1_Click()
+
 End Sub
 
 Private Sub UserForm_Initialize()
