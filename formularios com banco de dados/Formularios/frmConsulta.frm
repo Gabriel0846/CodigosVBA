@@ -42,43 +42,26 @@ Private Sub BUSCAR_Click()
     Next cel
 
     If encontrado Then
-        wsLancamentos.Range("H1").Value = numeroRequisicao
-        
-        wsLancamentos.Range("C5:D5").Value = wsLancamentos.Range("N4").Value
-        wsLancamentos.Range("C6:F6").Value = wsLancamentos.Range("O4").Value
-        wsLancamentos.Range("C7:F7").Value = wsLancamentos.Range("P4").Value
-        wsLancamentos.Range("B12:D12").Value = wsLancamentos.Range("Q4").Value
-        wsLancamentos.Range("E12").Value = wsLancamentos.Range("R4").Value
-        wsLancamentos.Range("F12").Value = wsLancamentos.Range("S4").Value
-        wsLancamentos.Range("G12").Value = wsLancamentos.Range("T4").Value
-        wsLancamentos.Range("B13:D13").Value = wsLancamentos.Range("U4").Value
-        wsLancamentos.Range("E13").Value = wsLancamentos.Range("V4").Value
-        wsLancamentos.Range("F13").Value = wsLancamentos.Range("W4").Value
-        wsLancamentos.Range("G13").Value = wsLancamentos.Range("X4").Value
-        wsLancamentos.Range("B14:D14").Value = wsLancamentos.Range("Y4").Value
-        wsLancamentos.Range("E14").Value = wsLancamentos.Range("Z4").Value
-        wsLancamentos.Range("F14").Value = wsLancamentos.Range("AA4").Value
-        wsLancamentos.Range("G14").Value = wsLancamentos.Range("AB4").Value
-        wsLancamentos.Range("B15:D15").Value = wsLancamentos.Range("AC4").Value
-        wsLancamentos.Range("E15").Value = wsLancamentos.Range("AD4").Value
-        wsLancamentos.Range("F15").Value = wsLancamentos.Range("AE4").Value
-        wsLancamentos.Range("G15").Value = wsLancamentos.Range("AF4").Value
-        wsLancamentos.Range("B16:D16").Value = wsLancamentos.Range("AG4").Value
-        wsLancamentos.Range("E16").Value = wsLancamentos.Range("AH4").Value
-        wsLancamentos.Range("F16").Value = wsLancamentos.Range("AI4").Value
-        wsLancamentos.Range("G16").Value = wsLancamentos.Range("AJ4").Value
-        wsLancamentos.Range("B17:D17").Value = wsLancamentos.Range("AK4").Value
-        wsLancamentos.Range("E17").Value = wsLancamentos.Range("AL4").Value
-        wsLancamentos.Range("F17").Value = wsLancamentos.Range("AM4").Value
-        wsLancamentos.Range("G17").Value = wsLancamentos.Range("AN4").Value
-        wsLancamentos.Range("B19:H19").Value = wsLancamentos.Range("AO4").Value
-        wsLancamentos.Range("C25").Value = wsLancamentos.Range("AP4").Value
-        wsLancamentos.Range("D25").Value = wsLancamentos.Range("AQ4").Value
-        wsLancamentos.Range("E25").Value = wsLancamentos.Range("AR4").Value
-        wsLancamentos.Range("F25").Value = wsLancamentos.Range("AS4").Value
-        wsLancamentos.Range("L21").Value = wsLancamentos.Range("AT4").Value
-        wsLancamentos.Range("L22").Value = wsLancamentos.Range("AU4").Value
-        wsLancamentos.Range("L23").Value = wsLancamentos.Range("AV4").Value
+        wsLancamentos.Range("AC6").Value = numeroRequisicao
+        wsLancamentos.Range("B12").Value = numeroRequisicao
+        wsLancamentos.Range("F15").Value = wsLancamentos.Range("AH6")
+        wsLancamentos.Range("M15").Value = wsLancamentos.Range("AK6")
+        wsLancamentos.Range("I30").Value = wsLancamentos.Range("AP6")
+        If wsLancamentos.Range("AM6") = wsLancamentos.Range("F18") Then
+            wsLancamentos.Range("E18") = "X"
+        ElseIf wsLancamentos.Range("AM6") = wsLancamentos.Range("F20") Then
+            wsLancamentos.Range("E20") = "X"
+        ElseIf wsLancamentos.Range("AM6") = wsLancamentos.Range("F22") Then
+            wsLancamentos.Range("E22") = "X"
+        ElseIf wsLancamentos.Range("AM6") = wsLancamentos.Range("F24") Then
+            wsLancamentos.Range("E24") = "X"
+        ElseIf wsLancamentos.Range("AM6") = wsLancamentos.Range("I18") Then
+            wsLancamentos.Range("H18") = "X"
+        ElseIf wsLancamentos.Range("AM6") = wsLancamentos.Range("I22") Then
+            wsLancamentos.Range("H22") = "X"
+        Else
+            wsLancamentos.Range("K24") = "X"
+        End If
     Else
         MsgBox "Número de Requisição não encontrado.", vbExclamation
     End If
