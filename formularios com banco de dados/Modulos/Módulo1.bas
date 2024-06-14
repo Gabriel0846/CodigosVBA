@@ -1,23 +1,53 @@
-Attribute VB_Name = "Módulo1"
+Attribute VB_Name = "Mï¿½dulo1"
 Sub SALVAR()
         
     Dim wsBancoDeDados As Worksheet
     Dim wsGuiaExames As Worksheet
     Dim nextRow As Long
     Dim wb As Workbook
+    Dim encontrado As Boolean
+    Dim ultimaLinha As Long
+    Dim i As Long
+    Dim numExame As Variant
     
     Set wb = ThisWorkbook
     Set wsBancoDeDados = Sheets("BANCO DE DADOS")
     Set wsGuiaExames = Sheets("GUIA EXAMES")
+    Set numExame = wsGuiaExames.Range("B12").Value
     
     wsBancoDeDados.Unprotect Password:="2015"
     wsGuiaExames.Unprotect Password:="2015"
-    
-    wsBancoDeDados.Rows(5).Insert Shift:=xlDown
-    wsGuiaExames.Range("AC5:AO5").Copy
-    wsBancoDeDados.Range("B5:N5").PasteSpecial Paste:=xlPasteValues
-    Application.CutCopyMode = False
-    LIMPAR
+
+    encontrado = False
+    ultimaLinha = wsBancoDeDados.Cells(wsBancoDeDados.Rows.Count, "A").End(xlUp).Row
+
+    For i = l To ultimaLinha
+        If wsBancoDeDados.Cells(i,1).Value = valorH1 Then
+            encontrado = True
+            linhaEncontrada = i
+            Exit For
+        End If
+    Next i
+
+    If encontrado Then
+        resposta = MsgBox("O nÃºmero do exame jÃ¡ existe no banco de dados. Deseja atualiza-lo pelos valores atuais?", vbYesNo + vbQuestion, "ConfirmaÃ§Ã£o")
+
+        If resposta = vbYes Then
+            wsGuiaExames.Range("AC5:AO5").Copy
+            wsBancoDeDados.Rows(linhaEncontrada).PasteSpecial Paste:xlPasteValues
+            Application.CutCopyMode = False
+            MsgBox "Exame " & NumExame & " registrado com sucesso"
+        Else
+            MsgBox "OperaÃ§Ã£o cancelada pelo usuÃ¡rio.", vbInformation
+        End If
+    Else
+        wsBancoDeDados.Rows(5).Insert Shift:=xlDown
+        wsGuiaExames.Range("AC5:AO5").Copy
+        wsBancoDeDados.Range("B5:N5").PasteSpecial Paste:=xlPasteValues
+        Application.CutCopyMode = False
+        LIMPAR
+        MsgBox "Exame " & numExame & " registrada com sucesso."
+    End If
     
     wsBancoDeDados.Protect Password:="2015", DrawingObjects:=True, Contents:=True, Scenarios:=True, AllowFiltering:=True
     wsGuiaExames.Protect Password:="2015"
@@ -38,7 +68,7 @@ Sub IMPRIMIR()
     If ActiveSheet.PageSetup.PrintArea <> "" Then
         ActiveSheet.PrintOut Copies:=1, Collate:=True, IgnorePrintAreas:=False
     Else
-        MsgBox "Não há uma área de impressão definida na aba ativa.", vbExclamation
+        MsgBox "Nï¿½o hï¿½ uma ï¿½rea de impressï¿½o definida na aba ativa.", vbExclamation
     End If
 End Sub
 
@@ -67,7 +97,7 @@ Sub LIMPAR_btn()
     Dim rng4 As Range
     Dim rng5 As Range
 
-    resposta = MsgBox("Vocâ tem certeza que deseja limpar o conteúdo?", vbYesNo + vbQuestion, "Confirmação")
+    resposta = MsgBox("Vocï¿½ tem certeza que deseja limpar o conteï¿½do?", vbYesNo + vbQuestion, "Confirmaï¿½ï¿½o")
     
     ActiveSheet.Unprotect Password:="2015"
     If resposta = vbYes Then
