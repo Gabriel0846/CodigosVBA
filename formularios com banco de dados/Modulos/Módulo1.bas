@@ -4,7 +4,9 @@ Sub SALVAR()
     Dim wsBancoDeDados As Worksheet
     Dim wsGuiaExames As Worksheet
     Dim nextRow As Long
+    Dim wb As Workbook
     
+    Set wb = ThisWorkbook
     Set wsBancoDeDados = Sheets("BANCO DE DADOS")
     Set wsGuiaExames = Sheets("GUIA EXAMES")
     
@@ -19,6 +21,9 @@ Sub SALVAR()
     
     wsBancoDeDados.Protect Password:="2015", DrawingObjects:=True, Contents:=True, Scenarios:=True, AllowFiltering:=True
     wsGuiaExames.Protect Password:="2015"
+    
+    wb.Save
+    
 End Sub
 
 Sub LIMPAR()

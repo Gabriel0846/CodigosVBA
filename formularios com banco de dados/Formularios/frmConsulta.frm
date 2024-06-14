@@ -42,6 +42,7 @@ Private Sub BUSCAR_Click()
     Next cel
 
     If encontrado Then
+        LIMPAR
         wsLancamentos.Range("AC6").Value = numeroRequisicao
         wsLancamentos.Range("B12").Value = numeroRequisicao
         wsLancamentos.Range("F15").Value = wsLancamentos.Range("AH6")
