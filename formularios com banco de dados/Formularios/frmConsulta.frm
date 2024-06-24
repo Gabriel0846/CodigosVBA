@@ -43,22 +43,35 @@ Private Sub BUSCAR_Click()
 
     If encontrado Then
         LIMPAR
-        wsLancamentos.Range("AC6").Value = numeroRequisicao
-        wsLancamentos.Range("B12").Value = numeroRequisicao
-        wsLancamentos.Range("F15").Value = wsLancamentos.Range("AH6")
-        wsLancamentos.Range("M15").Value = wsLancamentos.Range("AK6")
-        wsLancamentos.Range("I30").Value = wsLancamentos.Range("AP6")
-        If wsLancamentos.Range("AM6") = wsLancamentos.Range("F18") Then
+        wsLancamentos.Range("AC7").Value = numeroRequisicao
+        wsLancamentos.Range("AC5").Value = numeroRequisicao
+        wsLancamentos.Range("AD6").Value = wsLancamentos.Range("AD7")
+        wsLancamentos.Range("AE6").Value = wsLancamentos.Range("AE7")
+        wsLancamentos.Range("AF6").Value = wsLancamentos.Range("AF7")
+        wsLancamentos.Range("AG6").Value = wsLancamentos.Range("AG7")
+        wsLancamentos.Range("AH6").Value = wsLancamentos.Range("AH7")
+        wsLancamentos.Range("AI6").Value = wsLancamentos.Range("AI7")
+        wsLancamentos.Range("AJ6").Value = wsLancamentos.Range("AJ7")
+        wsLancamentos.Range("AK6").Value = wsLancamentos.Range("AK7")
+        wsLancamentos.Range("AL6").Value = wsLancamentos.Range("AL7")
+        wsLancamentos.Range("AM6").Value = wsLancamentos.Range("AM7")
+        wsLancamentos.Range("AN6").Value = wsLancamentos.Range("AN7")
+        wsLancamentos.Range("AO6").Value = wsLancamentos.Range("AO7")
+        wsLancamentos.Range("AP6").Value = wsLancamentos.Range("AP7")
+        wsLancamentos.Range("F15").Value = wsLancamentos.Range("AH7")
+        wsLancamentos.Range("M15").Value = wsLancamentos.Range("AL7")
+        wsLancamentos.Range("I30").Value = wsLancamentos.Range("AP7")
+        If wsLancamentos.Range("AM7") = wsLancamentos.Range("F18") Then
             wsLancamentos.Range("E18") = "X"
-        ElseIf wsLancamentos.Range("AM6") = wsLancamentos.Range("F20") Then
+        ElseIf wsLancamentos.Range("AM7") = wsLancamentos.Range("F20") Then
             wsLancamentos.Range("E20") = "X"
-        ElseIf wsLancamentos.Range("AM6") = wsLancamentos.Range("F22") Then
+        ElseIf wsLancamentos.Range("AM7") = wsLancamentos.Range("F22") Then
             wsLancamentos.Range("E22") = "X"
-        ElseIf wsLancamentos.Range("AM6") = wsLancamentos.Range("F24") Then
+        ElseIf wsLancamentos.Range("AM7") = wsLancamentos.Range("F24") Then
             wsLancamentos.Range("E24") = "X"
-        ElseIf wsLancamentos.Range("AM6") = wsLancamentos.Range("I18") Then
+        ElseIf wsLancamentos.Range("AM7") = wsLancamentos.Range("I18") Then
             wsLancamentos.Range("H18") = "X"
-        ElseIf wsLancamentos.Range("AM6") = wsLancamentos.Range("I22") Then
+        ElseIf wsLancamentos.Range("AM7") = wsLancamentos.Range("I22") Then
             wsLancamentos.Range("H22") = "X"
         Else
             wsLancamentos.Range("K24") = "X"
