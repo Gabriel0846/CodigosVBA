@@ -14,60 +14,51 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
+
 Private Sub BUSCAR_Click()
     Application.ScreenUpdating = False
 
-    Dim numeroRequisicao As String
+    Dim numeroProduto As String
     Dim encontrado As Boolean
     Dim wsBD As Worksheet
-    Dim wsLancamentos As Worksheet
+    Dim wSEntrada As Worksheet
     Dim rng As Range
     Dim cel As Range
 
-    numeroRequisicao = Me.TextBox1.Value
+    numeroProduto = Me.TextBox1.Value
     encontrado = False
 
-    Set wsBD = ThisWorkbook.Sheets("BANCO DE DADOS")
-    Set wsLancamentos = ThisWorkbook.Sheets("GUIA EXAMES")
-    Set rng = wsBD.Range("B1:B10000")
+    Set wsBD = ThisWorkbook.Sheets("BANCO_DE_DADOS")
+    Set wSEntrada = ThisWorkbook.Sheets("ENTRADA")
+    Set rng = wsBD.Range("A1:A100000")
 
-    wsBD.Unprotect Password:="2015"
-    wsLancamentos.Unprotect Password:="2015"
+    wsBD.Unprotect Password:="3141"
+    wSEntrada.Unprotect Password:="3141"
 
     For Each cel In rng
-        If cel.Value = numeroRequisicao Then
+        If cel.Value = numeroProduto Then
             encontrado = True
             Exit For
         End If
     Next cel
 
     If encontrado Then
-        wsLancamentos.Range("AC6").Value = numeroRequisicao
-        wsLancamentos.Range("B12").Value = numeroRequisicao
-        wsLancamentos.Range("F15").Value = wsLancamentos.Range("AH6")
-        wsLancamentos.Range("M15").Value = wsLancamentos.Range("AK6")
-        wsLancamentos.Range("I30").Value = wsLancamentos.Range("AP6")
-        If wsLancamentos.Range("AM6") = wsLancamentos.Range("F18") Then
-            wsLancamentos.Range("E18") = "X"
-        ElseIf wsLancamentos.Range("AM6") = wsLancamentos.Range("F20") Then
-            wsLancamentos.Range("E20") = "X"
-        ElseIf wsLancamentos.Range("AM6") = wsLancamentos.Range("F22") Then
-            wsLancamentos.Range("E22") = "X"
-        ElseIf wsLancamentos.Range("AM6") = wsLancamentos.Range("F24") Then
-            wsLancamentos.Range("E24") = "X"
-        ElseIf wsLancamentos.Range("AM6") = wsLancamentos.Range("I18") Then
-            wsLancamentos.Range("H18") = "X"
-        ElseIf wsLancamentos.Range("AM6") = wsLancamentos.Range("I22") Then
-            wsLancamentos.Range("H22") = "X"
-        Else
-            wsLancamentos.Range("K24") = "X"
-        End If
+        wSEntrada.Range("B2").Value = "CONSULTA"
+        wSEntrada.Range("D6").Value = numeroProduto
+        wSEntrada.Range("U4").Value = numeroProduto
+        wSEntrada.Range("D7").Value = wSEntrada.Range("V4")
+        wSEntrada.Range("M7").Value = wSEntrada.Range("W4")
+        wSEntrada.Range("M6").Value = wSEntrada.Range("X4")
+        wSEntrada.Range("D9").Value = wSEntrada.Range("Y4")
+        wSEntrada.Range("J9").Value = wSEntrada.Range("Z4")
+        wSEntrada.Range("H6").Value = wSEntrada.Range("AA4")
+        wSEntrada.Range("D12").Value = wSEntrada.Range("AB4")
     Else
-        MsgBox "Número de Requisição não encontrado.", vbExclamation
+        MsgBox "Produto não encontrado.", vbExclamation
     End If
 
-    wsBD.Protect Password:="2015", DrawingObjects:=True, Contents:=True, Scenarios:=True, AllowFiltering:=True
-    wsLancamentos.Protect Password:="2015"
+    wsBD.Protect Password:="3141", DrawingObjects:=True, Contents:=True, Scenarios:=True, AllowFiltering:=True
+    wSEntrada.Protect Password:="3141"
 
     Application.ScreenUpdating = True
     Unload Me
